@@ -16,7 +16,7 @@ const Header: React.FC = () => {
 
         <div className="flex items-center space-x-8">
           <div className="text-2xl font-bold">
-            <Link href="/">MarketPlace</Link>
+            <Link href="/home">MarketPlace</Link>
           </div>
 
           <nav className="hidden lg:flex space-x-8">

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const HomePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#d83F87] to-[#2a1b3c] dark:from-[#44318d] dark:to-[#2a1b3c] flex flex-col items-center justify-center text-white">
+    <div className="min-h-screen  flex flex-col items-center justify-center text-white">
       <div className="text-center p-8">
         <h1 className="text-4xl font-bold mb-4">Welcome to MarketPlace</h1>
         <p className="text-lg mb-8">A place to buy and sell amazing products. Explore our store and read insightful blogs!</p>
@@ -23,7 +23,6 @@ const HomePage: React.FC = () => {
       </div>
 
       <footer className="mt-auto py-4 text-center text-gray-400">
-        <p>&copy; 2025 MarketPlace. All rights reserved.</p>
       </footer>
     </div>
   );
