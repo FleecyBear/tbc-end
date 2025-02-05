@@ -1,39 +1,32 @@
 import React from 'react';
+import Link from 'next/link';
 
-
-const Home: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
-      
+    <div className="min-h-screen bg-gradient-to-r from-[#d83F87] to-[#2a1b3c] dark:from-[#44318d] dark:to-[#2a1b3c] flex flex-col items-center justify-center text-white">
+      <div className="text-center p-8">
+        <h1 className="text-4xl font-bold mb-4">Welcome to MarketPlace</h1>
+        <p className="text-lg mb-8">A place to buy and sell amazing products. Explore our store and read insightful blogs!</p>
 
-      <main className="flex-grow p-8">
-        <div className="container mx-auto">
-          <h1 className="text-4xl font-bold text-center mb-6">Welcome to MarketPlace</h1>
-          
-          {/* Search Bar */}
-          <div className="mb-8 flex justify-center">
-            <input
-              type="text"
-              className="p-3 w-1/2 rounded border border-gray-300"
-              placeholder="Search for items..."
-            />
-          </div>
-
-          {/* Featured Items */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <img src="item.jpg" alt="Item" className="w-full h-48 object-cover rounded-t-lg" />
-              <h3 className="text-xl font-semibold mt-4">Item Name</h3>
-              <p className="text-gray-600">Description of the item.</p>
-              <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded">Buy Now</button>
-            </div>
-            {/* Repeat for more items */}
-          </div>
+        <div className="flex flex-wrap justify-center space-x-4 space-y-4">
+          <Link href="/products">
+            <button className="bg-[#e98074] hover:bg-[#a4b3b6] text-white px-6 py-3 rounded-lg shadow-lg transition-colors duration-300">
+              Explore Products
+            </button>
+          </Link>
+          <Link href="/blog">
+            <button className="bg-[#44318d] hover:bg-[#2a1b3c] text-white px-6 py-3 rounded-lg shadow-lg transition-colors duration-300">
+              Read Blogs
+            </button>
+          </Link>
         </div>
-      </main>
+      </div>
 
+      <footer className="mt-auto py-4 text-center text-gray-400">
+        <p>&copy; 2025 MarketPlace. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
 
-export default Home;
+export default HomePage;
