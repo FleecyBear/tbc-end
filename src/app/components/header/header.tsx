@@ -1,34 +1,20 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import ThemeToggle from '@/app/utils/themeToggle';
 import { logoutUser } from '@/app/utils/logout';
 import { useRouter } from 'next/navigation';
-import { fetchUser } from '@/app/utils/fetchuser';
+import { useUser } from '@/app/contexts/userContext';
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [user, setUser] = useState<any>(null); 
+  const { user, setUser } = useUser(); 
   const router = useRouter();
 
-  useEffect(() => {
-    const loadUser = async () => {
-      const userData = await fetchUser();
-      setUser(userData);
-    };
-
-    loadUser(); 
-
-    return () => {
-      setUser(null); 
-    };
-  }, []);
-
   const handleLogout = async () => {
-    await logoutUser(router); 
+    await logoutUser(router);
     setUser(null); 
-    router.push('/login'); 
-
+    router.push('/login');
   };
 
   return (

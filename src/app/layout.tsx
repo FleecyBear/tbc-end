@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { UserProvider } from "./contexts/userContext"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +28,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-b from-[#d83F87] to-[#2a1b3c] dark:from-[#44318d] dark:to-[#2a1b3c]`}>
         <div className="relative min-h-screen">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#e98074] to-[#a4b3b6] dark:from-[#2a1b3c] dark:to-[#44318d] clip-triangle"></div>
-          <div className="relative z-10">{children}</div>
+          <UserProvider> 
+            <div className="absolute inset-0 bg-gradient-to-r from-[#e98074] to-[#a4b3b6] dark:from-[#2a1b3c] dark:to-[#44318d] clip-triangle"></div>
+            <div className="relative z-10">{children}</div>
+          </UserProvider>
         </div>
       </body>
     </html>
