@@ -55,6 +55,7 @@ export default function RegisterPage() {
             <label className="block text-[#2a1b3c] dark:text-white">Email</label>
             <input
               type="email"
+              name="email"
               className="w-full p-2 mt-1 border rounded focus:outline-none focus:ring-2 focus:ring-[#d83F87] text-black"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
