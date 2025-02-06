@@ -1,6 +1,5 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/app/utils/supabase/server';
 
@@ -46,19 +45,15 @@ export async function login(formData: FormData, redirectTo: string = '/home') {
 
   if (error) {
     console.error('Login error:', error);
-    return redirect('/error');
   }
 
   const user = authData.user;
   if (!user) {
     console.error('No user found after login');
-    return redirect('/error');
   }
 
   await ensureProfileExists(supabase, user);
 
-  revalidatePath('/');
-  return redirect(redirectTo);
 }
 
 export async function signup(formData: FormData, redirectTo: string = '/login') {
@@ -78,11 +73,8 @@ export async function signup(formData: FormData, redirectTo: string = '/login') 
   const user = authData.user;
   if (!user) {
     console.error('No user found after signup');
-    return redirect('/error');
   }
 
   await ensureProfileExists(supabase, user);
 
-  revalidatePath('/');
-  return redirect(redirectTo);
 }
