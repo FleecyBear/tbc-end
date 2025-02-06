@@ -2,10 +2,16 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import ThemeToggle from '@/app/utils/themeToggle';
+import { logoutUser } from '@/app/utils/logout';
+import { useRouter } from 'next/navigation'; 
+
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const router = useRouter();
+  const handleLogout = () => {
+    logoutUser(router);  
+  };
   return (
     <header className="bg-gradient-to-r  from-[#d83F87] to-[#2a1b3c] 
     dark:from-[#44318d] dark:to-[#2a1b3c] text-white p-4 fixed top-0 left-0 right-0 z-50">
@@ -31,6 +37,9 @@ const Header: React.FC = () => {
           <Link href="/profile" className="hover:text-gray-300">Profile</Link>
           <button className="bg-[#44318d] dark:bg-[#e98074] px-4 py-2 rounded hover:bg-[#e98074] dark:hover:bg-[#44318d]">
             <Link href="/login">Login</Link>
+          </button>
+          <button className="bg-[#44318d] dark:bg-[#e98074] px-4 py-2 rounded hover:bg-[#e98074] dark:hover:bg-[#44318d]" onClick={handleLogout}>
+            Logout
           </button>
         </div>
       </div>
