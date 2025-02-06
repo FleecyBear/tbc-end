@@ -46,7 +46,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#a4b3b6] dark:bg-[#2a1b3c] p-4">
+    <div className="flex min-h-screen items-center justify-center  p-4">
       <div className="w-full max-w-md bg-white dark:bg-[#44318D] p-6 rounded-lg shadow-lg relative">
         <h2 className="text-2xl font-bold text-[#2a1b3c] dark:text-[#E98074] text-center">Register</h2>
 

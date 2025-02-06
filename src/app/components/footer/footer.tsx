@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <footer className="bg-gradient-to-r from-[#a4b3b6] to-[#2a1b3c] dark:from-[#2a1b3c] dark:to-[#44318d] text-white py-8 mt-12">
+    <footer className="bg-gradient-to-r from-[#2a1b3c] to-[#d83F87] dark:from-[#2a1b3c] dark:to-[#44318d] text-white py-8 mt-12">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-sm">
           <p>&copy; 2025 MarketPlace. All rights reserved.</p>
