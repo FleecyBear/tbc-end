@@ -13,7 +13,7 @@ async function ensureProfileExists(supabase: any, user: any) {
     .eq('user_id', user.id)
     .single();
 
-  if (profileCheckError && profileCheckError.code !== 'PGRST116') {  
+  if (profileCheckError && profileCheckError.code !== 'PGRST116') {
     console.error('Error checking profile:', profileCheckError);
     return;
   }
@@ -46,19 +46,19 @@ export async function login(formData: FormData, redirectTo: string = '/home') {
 
   if (error) {
     console.error('Login error:', error);
-    redirect('/error');
+    return redirect('/error');
   }
 
   const user = authData.user;
   if (!user) {
     console.error('No user found after login');
-    redirect('/error');
+    return redirect('/error');
   }
 
   await ensureProfileExists(supabase, user);
 
-  revalidatePath('/', 'layout');
-  redirect(redirectTo);
+  revalidatePath('/');
+  return redirect(redirectTo);
 }
 
 export async function signup(formData: FormData, redirectTo: string = '/login') {
@@ -72,17 +72,17 @@ export async function signup(formData: FormData, redirectTo: string = '/login') 
 
   if (error) {
     console.error('Signup error:', error);
-    redirect('/error');
+    return redirect('/error');
   }
 
   const user = authData.user;
   if (!user) {
     console.error('No user found after signup');
-    redirect('/error');
+    return redirect('/error');
   }
 
   await ensureProfileExists(supabase, user);
 
-  revalidatePath('/', 'layout');
-  redirect(redirectTo);
+  revalidatePath('/');
+  return redirect(redirectTo);
 }
