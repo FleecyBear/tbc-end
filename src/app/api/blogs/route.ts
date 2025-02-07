@@ -6,10 +6,9 @@ export async function GET() {
   try {
     const supabase = createClient();
 
-    // Fetch blogs from the "blogs" table
     const { data, error } = await (await supabase)
       .from('blogs')
-      .select('title, title_ka, description, description_ka, creator, user_id, created_at')
+      .select('title, title_ka, description, description_ka, creator, user_id, created_at, id')
       .order('created_at', { ascending: false });
 
     if (error) {
