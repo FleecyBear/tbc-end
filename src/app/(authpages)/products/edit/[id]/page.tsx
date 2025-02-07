@@ -88,8 +88,12 @@ const EditProductPage = () => {
 
   const handleRemoveImage = (image: string) => {
     setImagesToRemove(prev => [...prev, image]);
+  
+    setProduct((prevProduct: any) => ({
+      ...prevProduct,
+      images: prevProduct.images.filter((img: string) => img !== image),
+    }));
   };
-
   const generateUniqueFilename = async (bucket: string, file: File, attempt = 0): Promise<string> => {
     let fileName = file.name;
     if (attempt > 0) {
@@ -256,37 +260,38 @@ const EditProductPage = () => {
               <div className="mb-4">
                 <label htmlFor="images" className="block text-lg font-semibold">Images</label>
                 <input
-                  type="file"
-                  id="images"
-                  name="images"
-                  multiple
-                  onChange={handleFileChange}
-                  className="w-full p-2 mt-2 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink"
+                    type="file"
+                    id="images"
+                    name="images"
+                    multiple
+                    onChange={handleFileChange}
+                    className="w-full p-2 mt-2 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink"
                 />
                 {product.images && product.images.length > 0 && (
-                  <div className="mt-4">
+                    <div className="mt-4">
                     <h3 className="text-lg font-semibold mb-2">Current Images</h3>
                     <div className="flex space-x-2">
-                      {product.images.map((image: string, index: number) => (
+                        {product.images.filter((image: string) => !imagesToRemove.includes(image)).map((image: string, index: number) => (
                         <div key={index} className="w-24 h-24 relative">
-                          <img
+                            <img
                             src={image}
                             alt={`Product image ${index + 1}`}
                             className="object-cover rounded-lg shadow-md"
-                          />
-                          <button
+                            />
+                            <button
                             type="button"
                             className="absolute top-0 right-0 mt-1 mr-1 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center"
                             onClick={() => handleRemoveImage(image)}
-                          >
+                            >
                             &times;
-                          </button>
+                            </button>
                         </div>
-                      ))}
+                        ))}
                     </div>
-                  </div>
+                    </div>
                 )}
-              </div>
+                </div>
+
     
               <button type="submit" className="w-full bg-vibrantPink hover:bg-darkPurple text-white py-2 rounded" disabled={loading}>
                 {loading ? 'Saving...' : 'Save Changes'}
