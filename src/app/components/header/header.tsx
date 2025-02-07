@@ -9,11 +9,13 @@ import { SiCoinmarketcap } from "react-icons/si";
 import { MdMenuOpen } from "react-icons/md";
 import { RiCloseLargeFill } from "react-icons/ri";
 import LanguageSwitcher from '../LanguageSwitcher';
+import {useTranslations} from 'next-intl';
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, setUser } = useUser();
   const router = useRouter();
+  const t = useTranslations();
 
   const handleLogout = async () => {
     await logoutUser(router);
@@ -33,8 +35,8 @@ const Header: React.FC = () => {
       
       <div className="hidden lg:flex justify-between  mx-40">
         <div className="flex gap-10">
-          <Link href="/blogs" className="hover:text-gray-300">Blogs</Link>
-          <Link href="/products" className="hover:text-gray-300">Products</Link>
+          <Link href="/blogs" className="hover:text-gray-300">{t('blogs')}</Link>
+          <Link href="/products" className="hover:text-gray-300">{t('products')}</Link>
         </div>
 
         <Link href="/home" className="text-3xl flex absolute left-1/2">
@@ -90,8 +92,8 @@ const Header: React.FC = () => {
             </button>
 
             <nav className="mt-10 flex flex-col space-y-6 text-lg items-end text-right">
-              <Link href="/blogs" className="block py-2" onClick={() => setMenuOpen(false)}>Blogs</Link>
-              <Link href="/products" className="block py-2" onClick={() => setMenuOpen(false)}>Products</Link>
+              <Link href="/blogs" className="block py-2" onClick={() => setMenuOpen(false)}>{t('blogs')}</Link>
+              <Link href="/products" className="block py-2" onClick={() => setMenuOpen(false)}>{t('products')}</Link>
               <Link href="/cart" className="block py-2" onClick={() => setMenuOpen(false)}>Cart</Link>
               <Link href="/profile" className="block py-2" onClick={() => setMenuOpen(false)}>Profile</Link>
 

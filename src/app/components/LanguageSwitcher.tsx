@@ -12,7 +12,7 @@ export default function LanguageSelector() {
     if (storedLang) {
       setLang(storedLang);
     } else {
-      const cookieLang = getCookie("lang");
+      const cookieLang = getCookie("NEXT_LOCALE");
       if (cookieLang) {
         setLang(cookieLang);
         localStorage.setItem("NEXT_LOCALE", cookieLang); 
