@@ -32,7 +32,7 @@ const Header: React.FC = () => {
       
       <div className="hidden lg:flex justify-between  mx-40">
         <div className="flex gap-10">
-          <Link href="/blog" className="hover:text-gray-300">Blog</Link>
+          <Link href="/blogs" className="hover:text-gray-300">Blog</Link>
           <Link href="/products" className="hover:text-gray-300">Products</Link>
         </div>
 
@@ -88,7 +88,7 @@ const Header: React.FC = () => {
             </button>
 
             <nav className="mt-10 flex flex-col space-y-6 text-lg items-end text-right">
-              <Link href="/blog" className="block py-2" onClick={() => setMenuOpen(false)}>Blog</Link>
+              <Link href="/blogs" className="block py-2" onClick={() => setMenuOpen(false)}>Blog</Link>
               <Link href="/products" className="block py-2" onClick={() => setMenuOpen(false)}>Products</Link>
               <Link href="/cart" className="block py-2" onClick={() => setMenuOpen(false)}>Cart</Link>
               <Link href="/profile" className="block py-2" onClick={() => setMenuOpen(false)}>Profile</Link>
