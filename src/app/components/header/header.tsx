@@ -79,7 +79,7 @@ const Header: React.FC = () => {
           className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50"
           onClick={closeMenu}
         >
-          <div className="fixed top-0 right-0 w-[30%] h-full bg-warmCoral dark:bg-deepBlue  p-6 flex flex-col z-50 shadow-lg">
+          <div className="fixed top-0 right-0 w-auto h-full bg-warmCoral dark:bg-deepBlue  p-6 flex flex-col z-50 shadow-lg">
             <button
               className="absolute top-4 right-4 text-3xl"
               onClick={() => setMenuOpen(false)}
@@ -88,7 +88,7 @@ const Header: React.FC = () => {
             </button>
 
             <nav className="mt-10 flex flex-col space-y-6 text-lg items-end text-right">
-              <Link href="/blogs" className="block py-2" onClick={() => setMenuOpen(false)}>Blog</Link>
+              <Link href="/blogs" className="block py-2" onClick={() => setMenuOpen(false)}>Blogs</Link>
               <Link href="/products" className="block py-2" onClick={() => setMenuOpen(false)}>Products</Link>
               <Link href="/cart" className="block py-2" onClick={() => setMenuOpen(false)}>Cart</Link>
               <Link href="/profile" className="block py-2" onClick={() => setMenuOpen(false)}>Profile</Link>
