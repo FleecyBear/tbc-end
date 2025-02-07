@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'atxxkdpgewnnhnlhkpdd.supabase.co',
-        pathname: '/storage/v1/object/public/images/**',
+        pathname: '/storage/v1/object/sign/images/**',
       },
     ],
   },
