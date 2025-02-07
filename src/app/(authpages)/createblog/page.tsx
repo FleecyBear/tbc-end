@@ -75,7 +75,7 @@ const CreateBlog: React.FC = () => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full p-2 border border-[#A4B3B6] rounded text-black dark:border-[#44318D]"
+            className="w-full p-2 border border-mutedGrayBlue rounded text-black dark:border-deepBlue"
             required
           />
         </div>
@@ -85,7 +85,7 @@ const CreateBlog: React.FC = () => {
             type="text"
             value={titleKa}
             onChange={(e) => setTitleKa(e.target.value)}
-            className="w-full p-2 border border-[#A4B3B6] rounded text-black dark:border-[#44318D]"
+            className="w-full p-2 border border-mutedGrayBlue rounded text-black dark:border-deepBlue"
           />
         </div>
         <div>
@@ -93,7 +93,7 @@ const CreateBlog: React.FC = () => {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-2 border border-[#A4B3B6] rounded text-black dark:border-[#44318D]" 
+            className="w-full p-2 border border-mutedGrayBlue rounded text-black dark:border-deepBlue" 
             required
           />
         </div>
@@ -102,13 +102,13 @@ const CreateBlog: React.FC = () => {
           <textarea
             value={descriptionKa}
             onChange={(e) => setDescriptionKa(e.target.value)}
-            className="w-full p-2 border border-[#A4B3B6] rounded text-black dark:border-[#44318D]"
+            className="w-full p-2 border border-mutedGrayBlue rounded text-black dark:border-deepBlue"
           />
         </div>
         <div>
           <button
             type="submit"
-            className="w-full bg-[#E98074] p-2 rounded hover:bg-[#D83F87] dark:bg-[#44318D]  dark:hover:bg-[#2A1B3C] "
+            className="w-full bg-warmCoral p-2 rounded hover:bg-vibrantPink dark:bg-deepBlue  dark:hover:bg-darkPurple "
             disabled={loading}
           >
             {loading ? 'Creating...' : 'Create Blog'}

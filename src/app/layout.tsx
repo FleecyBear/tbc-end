@@ -26,10 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-b from-[#d83F87] to-[#2a1b3c] dark:from-[#44318d] dark:to-[#2a1b3c]`}>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-b from-vibrantPink to-darkPurple dark:from-deepBlue dark:to-darkPurple`}>
         <div className="relative min-h-screen">
           <UserProvider> 
-            <div className="absolute inset-0 bg-gradient-to-r from-[#e98074] to-[#a4b3b6] dark:from-[#2a1b3c] dark:to-[#44318d] clip-triangle"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-warmCoral to-mutedGrayBlue dark:from-darkPurple dark:to-deepBlue clip-triangle"></div>
             <div className="relative z-10">{children}</div>
           </UserProvider>
         </div>

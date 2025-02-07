@@ -145,13 +145,13 @@ export default function ProfilePage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center p-6">
-      <div className="w-full max-w-lg bg-white dark:bg-[#44318D] p-8 rounded-xl shadow-lg">
-        <h2 className="text-3xl font-bold text-[#2A1B3C] dark:text-[#E98074] text-center mb-6">Profile</h2>
+      <div className="w-full max-w-lg bg-white dark:bg-deepBlue p-8 rounded-xl shadow-lg">
+        <h2 className="text-3xl font-bold text-darkPurple dark:text-warmCoral text-center mb-6">Profile</h2>
 
         <div className="space-y-4">
           {/* First Name */}
           <div className="flex items-center justify-between border-b pb-2">
-            <span className="text-lg text-[#2A1B3C] dark:text-white">First Name:</span>
+            <span className="text-lg text-darkPurple dark:text-white">First Name:</span>
             {editingField === "first_name" ? (
               <input
                 type="text"
@@ -161,10 +161,10 @@ export default function ProfilePage() {
                 className="border p-2 rounded text-black"
               />
             ) : (
-              <span className="font-semibold text-[#D83F87]">{profileData?.first_name || "N/A"}</span>
+              <span className="font-semibold text-vibrantPink">{profileData?.first_name || "N/A"}</span>
             )}
             {editingField !== "first_name" ? (
-              <button className="text-[#D83F87] hover:text-[#E98074]" onClick={() => {
+              <button className="text-vibrantPink hover:text-warmCoral" onClick={() => {
                 setEditingField("first_name");
                 setFormData(prev => ({ ...prev, first_name: profileData?.first_name || "" }));
               }}>Edit</button>
@@ -175,7 +175,7 @@ export default function ProfilePage() {
 
           {/* Last Name */}
           <div className="flex items-center justify-between border-b pb-2">
-            <span className="text-lg text-[#2A1B3C] dark:text-white">Last Name:</span>
+            <span className="text-lg text-darkPurple dark:text-white">Last Name:</span>
             {editingField === "last_name" ? (
               <input
                 type="text"
@@ -185,10 +185,10 @@ export default function ProfilePage() {
                 className="border p-2 rounded text-black"
               />
             ) : (
-              <span className="font-semibold text-[#D83F87]">{profileData?.last_name || "N/A"}</span>
+              <span className="font-semibold text-vibrantPink">{profileData?.last_name || "N/A"}</span>
             )}
             {editingField !== "last_name" ? (
-              <button className="text-[#D83F87] hover:text-[#E98074]" onClick={() => {
+              <button className="text-vibrantPink hover:text-warmCoral" onClick={() => {
                 setEditingField("last_name");
                 setFormData(prev => ({ ...prev, last_name: profileData?.last_name || "" }));
               }}>Edit</button>
@@ -199,7 +199,7 @@ export default function ProfilePage() {
 
           {/* Nickname */}
           <div className="flex items-center justify-between border-b pb-2">
-            <span className="text-lg text-[#2A1B3C] dark:text-white">Nickname:</span>
+            <span className="text-lg text-darkPurple dark:text-white">Nickname:</span>
             {editingField === "nickname" ? (
               <div>
                 <input
@@ -212,10 +212,10 @@ export default function ProfilePage() {
                 {nicknameError && <p className="text-red-500 text-sm">{nicknameError}</p>}
               </div>
             ) : (
-              <span className="font-semibold text-[#E98074]">{profileData?.nickname || "N/A"}</span>
+              <span className="font-semibold text-warmCoral">{profileData?.nickname || "N/A"}</span>
             )}
             {editingField !== "nickname" ? (
-              <button className="text-[#D83F87] hover:text-[#E98074]" onClick={() => {
+              <button className="text-vibrantPink hover:text-warmCoral" onClick={() => {
                 setEditingField("nickname");
                 setFormData(prev => ({ ...prev, nickname: profileData?.nickname || "" }));
               }}>Edit</button>
@@ -226,8 +226,8 @@ export default function ProfilePage() {
 
           {/* Email */}
           <div className="flex items-center justify-between border-b pb-2">
-            <span className="text-lg text-[#2A1B3C] dark:text-white">Email:</span>
-            <span className="font-semibold text-[#A4B3B6]">{profileData?.email}</span>
+            <span className="text-lg text-darkPurple dark:text-white">Email:</span>
+            <span className="font-semibold text-mutedGrayBlue">{profileData?.email}</span>
           </div>
         </div>
       </div>

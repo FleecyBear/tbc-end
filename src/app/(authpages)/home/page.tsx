@@ -10,12 +10,12 @@ const HomePage: React.FC = () => {
 
         <div className="flex flex-wrap justify-center space-x-4 space-y-4">
           <Link href="/products">
-            <button className="bg-[#e98074] hover:bg-[#a4b3b6] text-white px-6 py-3 rounded-lg shadow-lg transition-colors duration-300">
+            <button className="bg-warmCoral hover:bg-mutedGrayBlue text-white px-6 py-3 rounded-lg shadow-lg transition-colors duration-300">
               Explore Products
             </button>
           </Link>
           <Link href="/blog">
-            <button className="bg-[#44318d] hover:bg-[#2a1b3c] text-white px-6 py-3 rounded-lg shadow-lg transition-colors duration-300">
+            <button className="bg-deepBlue hover:bg-darkPurple text-white px-6 py-3 rounded-lg shadow-lg transition-colors duration-300">
               Read Blogs
             </button>
           </Link>

@@ -27,8 +27,8 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-gradient-to-r from-[#e98074] to-[#a4b3b6] 
-      dark:from-[#2a1b3c] dark:to-[#44318d] text-black dark:text-white p-4 fixed top-0 left-0 right-0 z-50">
+    <header className="bg-gradient-to-r from-warmCoral to-mutedGrayBlue 
+      dark:from-darkPurple dark:to-deepBlue text-black dark:text-white p-4 fixed top-0 left-0 right-0 z-50">
       
       <div className="hidden lg:flex justify-between  mx-40">
         <div className="flex gap-10">
@@ -45,14 +45,14 @@ const Header: React.FC = () => {
           <Link href="/profile" className="hover:text-gray-300">Profile</Link>
           {user ? (
             <button
-              className="bg-[#44318d] dark:bg-[#e98074] px-4 py-2 rounded hover:bg-[#e98074] dark:hover:bg-[#44318d]"
+              className="bg-deepBlue dark:bg-warmCoral px-4 py-2 rounded hover:bg-warmCoral dark:hover:bg-deepBlue"
               onClick={handleLogout}
             >
               Logout
             </button>
           ) : (
             <Link href="/login">
-              <button className="bg-[#44318d] dark:bg-[#e98074] px-4 py-2 rounded hover:bg-[#e98074] dark:hover:bg-[#44318d]">
+              <button className="bg-deepBlue dark:bg-warmCoral px-4 py-2 rounded hover:bg-warmCoral dark:hover:bg-deepBlue">
                 Login
               </button>
             </Link>
@@ -79,7 +79,7 @@ const Header: React.FC = () => {
           className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50"
           onClick={closeMenu}
         >
-          <div className="fixed top-0 right-0 w-[30%] h-full bg-[#E98074] dark:bg-[#44318d]  p-6 flex flex-col z-50 shadow-lg">
+          <div className="fixed top-0 right-0 w-[30%] h-full bg-warmCoral dark:bg-deepBlue  p-6 flex flex-col z-50 shadow-lg">
             <button
               className="absolute top-4 right-4 text-3xl"
               onClick={() => setMenuOpen(false)}
@@ -95,14 +95,14 @@ const Header: React.FC = () => {
 
               {user ? (
                 <button
-                  className="bg-white text-[#44318d] px-4 py-2 rounded hover:bg-gray-200 mt-10"
+                  className="bg-white text-deepBlue px-4 py-2 rounded hover:bg-gray-200 mt-10"
                   onClick={handleLogout}
                 >
                   Logout
                 </button>
               ) : (
                 <Link href="/login">
-                  <button className="bg-white text-[#44318d] px-4 py-2 rounded hover:bg-gray-200">
+                  <button className="bg-white text-deepBlue px-4 py-2 rounded hover:bg-gray-200">
                     Login
                   </button>
                 </Link>

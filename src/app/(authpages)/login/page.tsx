@@ -27,16 +27,16 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white dark:bg-[#44318D] p-6 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-[#2a1b3c] dark:text-[#E98074] text-center">Login</h2>
+      <div className="w-full max-w-md bg-white dark:bg-deepBlue p-6 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-bold text-darkPurple dark:text-warmCoral text-center">Login</h2>
 
         <form onSubmit={handleLogin} className="mt-4" autoComplete="on">
           <div>
-            <label className="block text-[#2a1b3c] dark:text-white">Email</label>
+            <label className="block text-darkPurple dark:text-white">Email</label>
             <input
               type="email"
               name="email"
-              className="w-full p-2 mt-1 border rounded focus:outline-none focus:ring-2 focus:ring-[#d83F87] text-black"
+              className="w-full p-2 mt-1 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink text-black"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -44,23 +44,23 @@ export default function LoginPage() {
           </div>
 
           <div className="mt-4">
-            <label className="block text-[#2a1b3c] dark:text-white">Password</label>
+            <label className="block text-darkPurple dark:text-white">Password</label>
             <input
               type="password"
-              className="w-full p-2 mt-1 border rounded focus:outline-none focus:ring-2 focus:ring-[#d83F87] text-black"
+              className="w-full p-2 mt-1 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink text-black"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
 
-          <button type="submit" className="w-full mt-6 bg-[#D83F87] hover:bg-[#E98074] text-white py-2 rounded">
+          <button type="submit" className="w-full mt-6 bg-vibrantPink hover:bg-warmCoral text-white py-2 rounded">
             Login
           </button>
         </form>
 
-        <p className="mt-4 text-center text-[#2a1b3c] dark:text-white">
-          Don't have an account? <Link href="/register" className="text-[#D83F87]">Register</Link>
+        <p className="mt-4 text-center text-darkPurple dark:text-white">
+          Don't have an account? <Link href="/register" className="text-vibrantPink">Register</Link>
         </p>
       </div>
     </div>
