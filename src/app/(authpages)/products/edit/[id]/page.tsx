@@ -22,6 +22,7 @@ const EditProductPage = () => {
   const [category, setCategory] = useState('');
   const [stockQuantity, setStockQuantity] = useState('');
   const [images, setImages] = useState<FileList | null>(null);
+  const [imagesToRemove, setImagesToRemove] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchParams = async () => {
@@ -85,6 +86,10 @@ const EditProductPage = () => {
     setImages(e.target.files);
   };
 
+  const handleRemoveImage = (image: string) => {
+    setImagesToRemove(prev => [...prev, image]);
+  };
+
   const generateUniqueFilename = async (bucket: string, file: File, attempt = 0): Promise<string> => {
     let fileName = file.name;
     if (attempt > 0) {
@@ -118,7 +123,7 @@ const EditProductPage = () => {
   const handleFormSubmit = async (event: any) => {
     event.preventDefault();
     setLoading(true);
-  
+
     try {
       const formData = new FormData(event.target);
       const updateData: any = {
@@ -130,8 +135,8 @@ const EditProductPage = () => {
         category: formData.get('category') as string,
         stock_quantity: parseInt(formData.get('stock_quantity') as string, 10),
       };
-  
-      let imageUrls: string[] = product.images; // Keep the existing images
+
+      let imageUrls: string[] = product.images.filter((image: string) => !imagesToRemove.includes(image)); // Remove selected images
       if (images) {
         for (let i = 0; i < images.length; i++) {
           const file = images[i];
@@ -141,12 +146,12 @@ const EditProductPage = () => {
         }
       }
       updateData.images = imageUrls;
-  
+
       const { error: updateError } = await supabase
         .from('products')
         .update(updateData)
         .eq('id', paramsObj.id);
-  
+
       if (updateError) {
         setErrorMessage(`Error updating product: ${updateError.message}`);
       } else {
@@ -158,7 +163,6 @@ const EditProductPage = () => {
       setLoading(false);
     }
   };
-  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-warmCoral to-mutedGrayBlue dark:from-darkPurple dark:to-deepBlue">
@@ -207,95 +211,91 @@ const EditProductPage = () => {
               onChange={(e) => setDescription(e.target.value)}
               className="w-full p-2 mt-2 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink"
               required
-            ></textarea>
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="description_ka" className="block text-lg font-semibold">Description (KA)</label>
-            <textarea
-              id="description_ka"
-              name="description_ka"
-              value={descriptionKa}
-              onChange={(e) => setDescriptionKa(e.target.value)}
-              className="w-full p-2 mt-2 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink"
-              required
-            ></textarea>
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="price" className="block text-lg font-semibold">Price</label>
-            <input
-              type="number"
-              id="price"
-              name="price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              className="w-full p-2 mt-2 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink"
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="category" className="block text-lg font-semibold">Category</label>
-            <input
-              type="text"
-              id="category"
-              name="category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="w-full p-2 mt-2 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink"
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="stock_quantity" className="block text-lg font-semibold">Stock Quantity</label>
-            <input
-              type="number"
-              id="stock_quantity"
-              name="stock_quantity"
-              value={stockQuantity}
-              onChange={(e) => setStockQuantity(e.target.value)}
-              className="w-full p-2 mt-2 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink"
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="images" className="block text-lg font-semibold">Images</label>
-            <input
-              type="file"
-              id="images"
-              name="images"
-              multiple
-              onChange={handleFileChange}
-              className="w-full p-2 mt-2 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink"
-            />
-            {product.images && product.images.length > 0 && (
-              <div className="mt-4">
-                <h3 className="text-lg font-semibold mb-2">Current Images</h3>
-                <div className="flex space-x-2">
-                  {product.images.map((image: string, index: number) => (
-                    <div key={index} className="w-24 h-24 relative">
-                      <img
-                        src={image}
-                        alt={`Product image ${index + 1}`}
-                        className="object-cover rounded-lg shadow-md"
-                      />
-                    </div>
-                  ))}
-                </div>
+              ></textarea>
               </div>
-            )}
+    
+              <div className="mb-4">
+                <label htmlFor="price" className="block text-lg font-semibold">Price</label>
+                <input
+                  type="number"
+                  id="price"
+                  name="price"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  className="w-full p-2 mt-2 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink"
+                  required
+                />
+              </div>
+    
+              <div className="mb-4">
+                <label htmlFor="category" className="block text-lg font-semibold">Category</label>
+                <input
+                  type="text"
+                  id="category"
+                  name="category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="w-full p-2 mt-2 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink"
+                  required
+                />
+              </div>
+    
+              <div className="mb-4">
+                <label htmlFor="stock_quantity" className="block text-lg font-semibold">Stock Quantity</label>
+                <input
+                  type="number"
+                  id="stock_quantity"
+                  name="stock_quantity"
+                  value={stockQuantity}
+                  onChange={(e) => setStockQuantity(e.target.value)}
+                  className="w-full p-2 mt-2 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink"
+                  required
+                />
+              </div>
+    
+              <div className="mb-4">
+                <label htmlFor="images" className="block text-lg font-semibold">Images</label>
+                <input
+                  type="file"
+                  id="images"
+                  name="images"
+                  multiple
+                  onChange={handleFileChange}
+                  className="w-full p-2 mt-2 border rounded focus:outline-none focus:ring-2 focus:ring-vibrantPink"
+                />
+                {product.images && product.images.length > 0 && (
+                  <div className="mt-4">
+                    <h3 className="text-lg font-semibold mb-2">Current Images</h3>
+                    <div className="flex space-x-2">
+                      {product.images.map((image: string, index: number) => (
+                        <div key={index} className="w-24 h-24 relative">
+                          <img
+                            src={image}
+                            alt={`Product image ${index + 1}`}
+                            className="object-cover rounded-lg shadow-md"
+                          />
+                          <button
+                            type="button"
+                            className="absolute top-0 right-0 mt-1 mr-1 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                            onClick={() => handleRemoveImage(image)}
+                          >
+                            &times;
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+    
+              <button type="submit" className="w-full bg-vibrantPink hover:bg-darkPurple text-white py-2 rounded" disabled={loading}>
+                {loading ? 'Saving...' : 'Save Changes'}
+              </button>
+            </form>
           </div>
-
-          <button type="submit" className="w-full bg-vibrantPink hover:bg-darkPurple text-white py-2 rounded" disabled={loading}>
-            {loading ? 'Saving...' : 'Save Changes'}
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-};
-
-export default EditProductPage;
+        </div>
+      );
+    };
+    
+    export default EditProductPage;
+    
