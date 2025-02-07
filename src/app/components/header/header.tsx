@@ -8,6 +8,7 @@ import { useUser } from '@/app/contexts/userContext';
 import { SiCoinmarketcap } from "react-icons/si";
 import { MdMenuOpen } from "react-icons/md";
 import { RiCloseLargeFill } from "react-icons/ri";
+import LanguageSwitcher from '../LanguageSwitcher';
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -58,6 +59,7 @@ const Header: React.FC = () => {
             </Link>
           )}
           <ThemeToggle />
+          <LanguageSwitcher />
         </div>
       </div>
 
