@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { fetchUser } from '@/app/utils/fetchuser';
@@ -24,9 +24,8 @@ const CreateProduct: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
     setLoading(true);
-  
+
     try {
       const user = await fetchUser();
       if (!user) {
@@ -34,9 +33,9 @@ const CreateProduct: React.FC = () => {
         setLoading(false);
         return;
       }
-  
+
       const supabase = createClient();
-      
+
       const { data: profileData, error: profileError } = await supabase
         .from('profiles')
         .select('nickname')
@@ -48,7 +47,7 @@ const CreateProduct: React.FC = () => {
         setLoading(false);
         return;
       }
-  
+
       const generateUniqueFilename = async (bucket: string, file: File, attempt = 0): Promise<string> => {
         let fileName = file.name;
         if (attempt > 0) {
@@ -56,33 +55,39 @@ const CreateProduct: React.FC = () => {
           const nameWithoutExt = file.name.substring(0, file.name.lastIndexOf('.'));
           fileName = `${nameWithoutExt} (${attempt})${ext}`;
         }
-  
+
         const { error } = await supabase.storage.from(bucket).upload(`public/${fileName}`, file, {
           cacheControl: '3600',
           upsert: false,
         });
-  
+
         if (error && error.message === 'Duplicate file') {
           return await generateUniqueFilename(bucket, file, attempt + 1);
         } else if (error) {
           throw error;
         }
-  
+
         return fileName;
       };
-  
+
+      const generateSignedUrl = async (bucket: string, path: string, expiresIn: number) => {
+        const { data, error } = await supabase.storage.from(bucket).createSignedUrl(path, expiresIn);
+        if (error) {
+          throw error;
+        }
+        return data.signedUrl;
+      };
+
       let imageUrls: string[] = [];
       if (images) {
         for (let i = 0; i < images.length; i++) {
           const file = images[i];
           const uniqueFileName = await generateUniqueFilename('images', file);
-  
-          const publicUrlResponse = supabase.storage.from('images').getPublicUrl(`public/${uniqueFileName}`);
-          const publicUrl = publicUrlResponse.data.publicUrl;
-          imageUrls.push(publicUrl);
+          const signedUrl = await generateSignedUrl('images', `public/${uniqueFileName}`, 31536000); // 1 year in seconds
+          imageUrls.push(signedUrl);
         }
       }
-  
+
       const newProduct = {
         title,
         title_ka: titleKa,
@@ -95,13 +100,13 @@ const CreateProduct: React.FC = () => {
         creator: profileData.nickname,
         user_id: user.id
       };
-  
+
       console.log('New product:', newProduct); 
-  
+
       const { error: productError } = await supabase
         .from('products')
         .insert([newProduct]);
-  
+
       if (productError) {
         setError(`Error creating product: ${productError.message}`);
       } else {
@@ -113,10 +118,6 @@ const CreateProduct: React.FC = () => {
       setLoading(false);
     }
   };
-  
-  
-  
-  
 
   return (
     <div className="container mx-auto p-6 text-black dark:text-white">
