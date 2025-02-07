@@ -32,7 +32,7 @@ const Header: React.FC = () => {
       
       <div className="hidden lg:flex justify-between  mx-40">
         <div className="flex gap-10">
-          <Link href="/blogs" className="hover:text-gray-300">Blog</Link>
+          <Link href="/blogs" className="hover:text-gray-300">Blogs</Link>
           <Link href="/products" className="hover:text-gray-300">Products</Link>
         </div>
 
