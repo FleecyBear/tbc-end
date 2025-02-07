@@ -19,7 +19,6 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
-/* Add to globals.css or your main CSS file */
 @layer utilities {
   .clip-triangle {
     clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
